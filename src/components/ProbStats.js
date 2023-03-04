@@ -10,16 +10,20 @@ const ProbStats=()=>{
     const [data,setData]=useState([])
     const [maindata,setMainData]=useState([])
  const click1=()=>{
+  let c=0;
+if(maindata.length>0){
   let g=maindata[0];
 
-  g.all_topics.forEach(e=>{
+  g && g.all_topics.forEach(e=>{
     let sum=0;
-    e.all_series.forEach(k=>{
+
+   e && e.all_series.forEach(k=>{
      sum+= k.problem_count
     })
     e['nProblem']=sum;
+    c+=sum;
   })
-  
+g['nProblem']=c; 
   let b=[]
   b.push(g)
   console.log(b);
@@ -27,12 +31,13 @@ const ProbStats=()=>{
 document.getElementById("1").classList.add("active");
 document.getElementById("2").classList.remove("active");
 document.getElementById("3").classList.remove("active");
-
+}
 
  }   
  const click2=()=>{
   let g=maindata[1];
   let b=[]
+  let c=0;
  
 
   g.all_topics.forEach(e=>{
@@ -41,8 +46,10 @@ document.getElementById("3").classList.remove("active");
      sum+= k.problem_count
     })
     e['nProblem']=sum;
+    c+=sum;
   })
 
+g['nProblem']=c; 
   b.push(g)
   setData(b)
   document.getElementById("2").classList.add("active");
@@ -57,15 +64,16 @@ document.getElementById("3").classList.remove("active");
     let b=[]
     
     
-
+let c=0;
   g.all_topics.forEach(e=>{
     let sum=0;
     e.all_series.forEach(k=>{
      sum+= k.problem_count
     })
     e['nProblem']=sum;
+    c+=sum;
   })
-    
+  g['nProblem']=c; 
     b.push(g)
     setData(b)
     document.getElementById("3").classList.add("active");
@@ -118,11 +126,10 @@ return (
   </thead>
   {data && data.map((e,i)=>(
 
-
-  e.all_topics.map(topic=>(
+ e && e.all_topics.map(topic=>(
 
     <>
-    
+
 <tr>
 
 
@@ -154,6 +161,16 @@ return (
 
 
   ))}
+  {data.length>0?<tr>
+    <td></td> 
+    <td></td> 
+    <td>Total Problems : </td>
+    <td> {data.length>0? data[0].nProblem:null}</td>
+   
+    </tr>
+  
+  :null
+  }
 
 </table>
 </div>
