@@ -4,9 +4,15 @@ import {useDispatch} from "react-redux"
 import {searchText} from "../actions"
 import {Link} from "react-router-dom"
 import Allproblems from "./Allproblems"
+import firebase from "../firebase"
 const Navbar=(props)=>{
 const [search,setText]=useState("");
 const dispatch=useDispatch();
+
+const signout=()=>{
+const auth=firebase.auth();
+auth.signOut()
+}
 
 return (
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -43,6 +49,9 @@ return (
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="/allTests" >Tests<span class="sr-only">(current)</span></a>
+      </li>
+      <li  style={{paddingTop:"10px"}}>
+        <a style={{marginLeft:"80vh",cursor:"pointer",color:"white"}}   onClick={signout} >SignOut<span class="sr-only">(current)</span></a>
       </li>
   
     </ul>

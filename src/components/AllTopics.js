@@ -222,7 +222,7 @@ render(){
  Add Level
 </button>
 <div class="form-check form-switch">
- <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" onChange={this.getLang}/>
+ <input class="form-check-input" style={{marginLeft:"-50px"}} type="checkbox" id="flexSwitchCheckDefault" onChange={this.getLang}/>
  <label class="form-check-label" for="flexSwitchCheckDefault">Bangla</label>
 </div>
 <button type="button" onClick={this.loadTopics} className="btn btn-outline-primary btn-lg my-3 mx-3" data-toggle="modal" data-target="#exampleModalLong3">
