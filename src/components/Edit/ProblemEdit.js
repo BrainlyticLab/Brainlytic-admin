@@ -197,17 +197,17 @@ await this.setState({loading:1})
         <form>
           <div class="mb-3">
             <label class="form-label">Title</label>
-            <input onChange={this.problemChange} value={this.state.title} type="text" class="form-control" name="title" />
+            <input style={{background:"white"}} onChange={this.problemChange} value={this.state.title} type="text" class="form-control" name="title" />
 
           </div>
           <div class="mb-3">
             <label class="form-label">Series Id</label>
-            <input onChange={this.problemChange} value={this.state.series_id} type="text" class="form-control" name="series_id" />
+            <input style={{background:"white"}} onChange={this.problemChange} value={this.state.series_id} type="text" class="form-control" name="series_id" />
 
           </div>
           <div class="mb-3">
             <label class="form-label">Serial</label>
-            <input onChange={this.problemChange} value={this.state.serial} type="text" class="form-control" name="serial" />
+            <input style={{background:"white"}} onChange={this.problemChange} value={this.state.serial} type="text" class="form-control" name="serial" />
 
           </div>
           <div class="mb-3">
@@ -253,7 +253,7 @@ await this.setState({loading:1})
           {this.state.ispremium ?
             (
               <div class="form-check">
-                <input onClick={(e) => this.setState({ ispremium: !this.state.ispremium })} class="form-check-input" type="checkbox" value={this.state.ispremium} id="flexCheckDefault" checked />
+                <input onClick={(e) => this.setState({ ispremium: !this.state.ispremium })} class="form-check-input" style={{marginLeft:"-4.25rem"}} type="checkbox" value={this.state.ispremium} id="flexCheckDefault" checked />
                 <label class="form-check-label" for="flexCheckDefault">
                   Premium
                 </label>
@@ -261,7 +261,7 @@ await this.setState({loading:1})
             ) :
             (
               <div class="form-check">
-                <input onClick={(e) => this.setState({ ispremium: !this.state.ispremium })} class="form-check-input" type="checkbox" value={this.state.ispremium} id="flexCheckDefault" />
+                <input onClick={(e) => this.setState({ ispremium: !this.state.ispremium })} class="form-check-input"  style={{marginLeft:"-4.25rem"}} type="checkbox" value={this.state.ispremium} id="flexCheckDefault" />
                 <label class="form-check-label" for="flexCheckDefault">
                   Premium
                 </label>
@@ -271,7 +271,7 @@ await this.setState({loading:1})
           {this.state.isLive ?
             (
               <div class="form-check">
-                <input onClick={(e) => this.setState({ isLive: !this.state.isLive })} class="form-check-input" type="checkbox" value={this.state.isLive} id="flexCheckDefault2" checked />
+                <input onClick={(e) => this.setState({ isLive: !this.state.isLive })} class="form-check-input"  style={{marginLeft:"-4.25rem"}} type="checkbox" value={this.state.isLive} id="flexCheckDefault2" checked />
                 <label class="form-check-label" for="flexCheckDefault2">
                   IsLive
                 </label>
@@ -279,7 +279,7 @@ await this.setState({loading:1})
             ) :
             (
               <div class="form-check">
-                <input onClick={(e) => this.setState({ isLive: !this.state.isLive })} class="form-check-input" type="checkbox" value={this.state.isLive} id="flexCheckDefault2" />
+                <input onClick={(e) => this.setState({ isLive: !this.state.isLive })} class="form-check-input"  style={{marginLeft:"-4.25rem"}} type="checkbox" value={this.state.isLive} id="flexCheckDefault2" />
                 <label class="form-check-label" for="flexCheckDefault2">
                   IsLive
                 </label>
@@ -289,7 +289,7 @@ await this.setState({loading:1})
           {this.state.is_for_test ?
             (
               <div class="form-check">
-                <input onClick={(e) => this.setState({ is_for_test: !this.state.is_for_test})} class="form-check-input" type="checkbox" value={this.state.is_for_test} id="flexCheckDefault3" checked />
+                <input onClick={(e) => this.setState({ is_for_test: !this.state.is_for_test})} class="form-check-input"  style={{marginLeft:"-4.25rem"}} type="checkbox" value={this.state.is_for_test} id="flexCheckDefault3" checked />
                 <label class="form-check-label" for="flexCheckDefault3">
                   IsForTest
                 </label>
@@ -297,7 +297,7 @@ await this.setState({loading:1})
             ) :
             (
               <div class="form-check">
-                <input onClick={(e) => this.setState({ is_for_test: !this.state.is_for_test })} class="form-check-input" type="checkbox" value={this.state.is_for_test} id="flexCheckDefault3" />
+                <input onClick={(e) => this.setState({ is_for_test: !this.state.is_for_test })} class="form-check-input"  style={{marginLeft:"-4.25rem"}} type="checkbox" value={this.state.is_for_test} id="flexCheckDefault3" />
                 <label class="form-check-label" for="flexCheckDefault3">
                   IsForTest
                 </label>

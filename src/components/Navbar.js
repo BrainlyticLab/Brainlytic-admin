@@ -43,6 +43,9 @@ return (
           <a class="dropdown-item" href="/allProblems" >All Problems</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="/probStats">Stats</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/liveProbs">Live Problems</a>
+    
        
         
         </div>

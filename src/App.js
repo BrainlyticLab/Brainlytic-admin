@@ -15,6 +15,7 @@ import Tutorial from "./components/Tutorial"
 import SeriesByTopic from "./components/SeriesByTopic"
 import ProblemBySeries  from "./components/ProblemBySeries"
 import Login  from "./components/Login"
+import LiveProbs  from "./components/LiveProbs"
 import ProblemEdit from "./components/Edit/ProblemEdit"
 import firebase from "./firebase"
 import './App.css';
@@ -67,11 +68,13 @@ function App() {
      <Route path ='/allTests' component={AllTests}/>
      <Route path ='/editTest/:level_id/:test_id/:lang' component={AddTest}/>
      <Route path ='/getTest/:test_id' component={GetTest}/>
-     <Route path ='/editTest/:level_id/:test_id/:lang' component={AddTest}/>
+
      <Route path ='/getResult/:level_id/:test_id/:lang/:name' component={GetResult}/>
   
-     <Route path ='/probStats' component={ProbStats}/></>):<Redirect to="/" /> 
-}
+     <Route path ='/probStats' component={ProbStats}/>
+     
+     <Route path ='/liveProbs' component={LiveProbs}/>
+     </>):<Redirect to="/" /> }
      </Switch>
    
      </div>

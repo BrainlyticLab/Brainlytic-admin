@@ -81,19 +81,52 @@ Load Tests
     <label for="exampleInput3">Name</label>
     <input onChange={(e)=>setName(e.target.value)}  style={{width:"50%",margin:"auto"}}type="text" class="form-control" id="exampleInput3"/>
   </div>
-  <div class="form-group">
-    <label for="exampleInput1">Language (en or bn) </label>
-    <input onChange={(e)=>setLang(e.target.value)} style={{width:"50%",margin:"auto"}} type="text" class="form-control" id="exampleInput1" aria-describedby="emailHelp" />
+  <div class="d">
+  <label for="exampleInput1">Language</label>
+    {/* <label for="exampleInput1">Language (en or bn) </label> */}
+    {/* <input onChange={(e)=>setLang(e.target.value)} style={{width:"50%",margin:"auto"}} type="text" class="form-control" id="exampleInput1" aria-describedby="emailHelp" /> */}
+  <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+  
+  value={lang}
+  onChange={(e)=>setLang(e.target.value)}
+  >
+  <option selected>Select Language</option>
+  <option value="en">English</option>
+  <option value="bn">Bangla</option>
 
+</select>
   </div>
   <div class="form-group">
-    <label for="exampleInput2">Level Id (6/7/8)</label>
-    <input onChange={(e)=>setLevel(e.target.value)} style={{width:"50%",margin:"auto"}}type="text" class="form-control" id="exampleInput2"/>
+    <label for="exampleInput2">Level Id</label>
+    {/* <input onChange={(e)=>setLevel(e.target.value)} style={{width:"50%",margin:"auto"}}type="text" class="form-control" id="exampleInput2"/>
+  */}
+  <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+  value={level}
+  onChange={(e)=>setLevel(e.target.value)}
+  
+  >
+  <option selected>Select Level</option>
+  <option value="6">Level 1</option>
+  <option value="7">Level 2</option>
+  <option value="8">Level 3</option>
+  <option value="9">Level 4</option>
+</select>
   </div>
  
   <div class="form-group">
-    <label for="exampleInput4">Type (0-Online, 1-Practice) </label>
-    <input onChange={(e)=>setType(e.target.value)}  style={{width:"50%",margin:"auto"}}type="text" class="form-control" id="exampleInput4"/>
+    <label for="exampleInput4">Type  </label>
+    {/* <input onChange={(e)=>setType(e.target.value)}  style={{width:"50%",margin:"auto"}}type="text" class="form-control" id="exampleInput4"/> */}
+  
+    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+  value={type}
+  onChange={(e)=>setType(e.target.value)}
+  
+  >
+  <option selected>Select Type</option>
+  <option value="0">Online</option>
+  <option value="1">Practice</option>
+  
+</select>
   </div>
 
 

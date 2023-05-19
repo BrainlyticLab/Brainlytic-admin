@@ -31,10 +31,17 @@ class Allproblems extends Component {
     allLoading:0,
 UnMappedLoading:0,
     mapped_id: "",
-    setters:[]
+    setters:[],
+    level:"",
+    diff:"",
+    lastDocument:null,
+    start:0,
+    end:20
 
   }
   componentDidMount = async () => {
+    console.log(this.state.start,this.state.end)
+
     c = 0;
     let p = [];
     let t = {};
@@ -51,10 +58,16 @@ UnMappedLoading:0,
 })
       
     })
-
-    firebase.firestore().collection('problem').where("draft", "==", false).get().then(docs => {
+var cc=0;
+    firebase.firestore().collection('problem').where("draft","==",false).get().then(docs => {
+      
+      
+     
       docs.forEach(doc => {
-        
+
+
+
+        this.setState({lastDocument:doc})
         tempData = {}
         temp = {};
         t = {}
@@ -350,14 +363,19 @@ UnMappedLoading:0,
         t["is_for_test"] = doc.data().is_for_test !== null ? doc.data().is_for_test : false;
    
         p.push(t);
+      
 
       })
     })
 
+
     await this.setState({
       structure: p,
-      count: c
+      count: c,
+      end:p.length==0?20:p.length
+      
     })
+  
 
 
   }
@@ -374,19 +392,20 @@ getName= (id) =>{
  return name;
 }
   click = async () => {
-    await this.setState({ loading: 1 })
+    
+    await this.setState({ allLoading: 1 })
     this.setState({
       f: this.state.structure,
       mainAra: this.state.structure
     })
 
-    this.state.f.forEach(e => {
+    this.state.f.length>0 && this.state.f.slice(this.state.start,this.state.end).filter(e=>e.difficulty.includes(this.state.diff)).forEach(e => {
 
       document.getElementById(e.doc_id).style.display = "block"
     },
-      async () => { await this.setState({ loading: 0 }) }
-    )
 
+    )
+    this.setState({ allLoading: 0 }) 
   }
 
   go=(prob)=>{
@@ -432,6 +451,7 @@ axios({
 
   bnclick = async () => {
     await this.setState({ bnLoading: 1 })
+    console.log(this.state.f)
    
 
     axios({
@@ -618,9 +638,13 @@ console.log(temp)
         {/* <button className="btn btn-dark my-3" onClick={this.click}>Load Problems</button> */}
         <button class="btn btn-dark my-3 ml-4" type="button" onClick={this.click} >
 
-        
+        {this.state.allLoading == 0 ? null : <><span class="spinner-grow spinner-grow-sm pr-2" role="status" aria-hidden="true"></span>
+        <span class="sr-only mr-2">Loading..</span></>}
 
-          Load Problems</button>
+          Load Problems
+          
+          
+          </button>
         {/* <button className="btn btn-dark my-3 mx-3" onClick={this.bnclick}>Load Bangla Problems</button> */}
 
         <button class="btn btn-primary my-3 ml-4" type="button" onClick={this.bnclick} >
@@ -630,15 +654,33 @@ console.log(temp)
 
           Load Bangla Problems</button>
   <button class="btn btn-dark my-3 ml-4" type="button" onClick={this.UnMappedClick} >
-
+  
  {this.state.UnMappedLoading == 0 ? null : <><span class="spinner-grow spinner-grow-sm pr-2" role="status" aria-hidden="true"></span>
             <span class="sr-only mr-2">Loading..</span></>}
 
           Load UnMapped Problems</button>
-        {this.state.f.map((prob, idx) => {
+  
+          <div class="d">
+  <label for="exampleInput1">Difficulty</label>
+    {/* <label for="exampleInput1">Language (en or bn) </label> */}
+    {/* <input onChange={(e)=>setLang(e.target.value)} style={{width:"50%",margin:"auto"}} type="text" class="form-control" id="exampleInput1" aria-describedby="emailHelp" /> */}
+  <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+  
+  value={this.state.diff}
+  onChange={(e)=> this.setState({ diff: e.target.value })}
+  >
+  <option selected value="">All</option>
+  <option value="easy">Easy</option>
+  <option value="medium">Medium</option>
+  <option value="hard">Hard</option>
+  
+</select>
+  </div>
+        {this.state.f.length>0 && this.state.f.slice(this.state.start,this.state.end).filter(e=>e.difficulty.includes(this.state.diff)).map((prob, idx) => {
      
           return (
             <div key={prob.doc_id} class="card mt-5" style={{ width: '20rem', margin: "auto" }} id={prob.doc_id}>
+      
               <img src={prob.logo} className="img-fluid rounded-circle w-50 mb-3 m-auto" alt="..." />
               <div className="card-body">
                 <h2 className="card-title">{prob.title}</h2>
@@ -740,7 +782,19 @@ console.log(temp)
         <div>
 
         </div>
+        <nav aria-label="Page navigation example">
+  <ul class="pagination">{
+   
 
+  [...Array(20)].map((_, i) => (
+    <li  style={{margin:"auto",marginTop:"45px",marginBottom:"50px"}}><a class="page-link" style={{color:"black"}} href="#" onClick={()=>{this.setState({start:i*(this.state.f.length/20), end:(this.state.f.length/20)*(i+1)})}}>{i}</a></li>
+    
+    ))
+  }
+ <li  style={{margin:"auto",marginTop:"45px",marginBottom:"50px"}}><a class="page-link" style={{color:"black"}} href="#" onClick={()=>{this.setState({start:0, end:this.state.f.length})}}>All</a></li>
+   
+  </ul>
+</nav>
       </div>
     )
 

@@ -18,12 +18,14 @@ const AddTest = () => {
 const [title,setTitle]=useState('');
 const [time,setTime]=useState('');
 const [probs,setProbs]=useState([])
+const [ascending,setAscending]=useState(false)
 const [probId,setProbId]=useState([]);
 const [totProblem,setTotProblem]=useState(20);
 const [MathProblem,setMathProblem]=useState(10);
 const [GeoProblem,setGeoProblem]=useState(5);
 const [LogicalProblem,setLogicalProblem]=useState(5);
 const [data,setData]=useState([]);
+const [filteredData,setFilteredData]=useState([]);
 const [duration,setDuration]=useState(0);
 const [totMarks,setTotMarks]=useState(50);
 const [dataProb,setDataProb]=useState([])
@@ -138,11 +140,58 @@ const levelClick=(text)=>{
     headers: {
       'authorization': keys.authorization,
     }
-  }).then(res =>{ setData(res.data.filter(e=>e.topic.lang==lang ));console.log(res.data)})
+  }).then(res =>{ 
+    
+    setData(res.data.filter(e=>e.topic.lang==lang ));
+  
+    
+    console.log(res.data)})
     .catch(e => {  console.log(e)})
 console.log(level);
 
 
+}
+const method=()=>{
+  setAscending(!ascending)
+let newData=data.slice(0);
+
+newData.forEach(d=>{
+
+d.problems=d.problems.sort((p1,p2)=>{
+
+let p= p1.user_rating!=null?((p1.admin_rating*2+p1.user_rating)*100/30):p1.admin_rating*10;
+
+let q= p2.user_rating!=null?((p2.admin_rating*2+p2.user_rating)*100/30):p2.admin_rating*10;
+if(p<q) return 1
+else return -1
+
+})
+
+})
+console.log(data)
+setData(newData)
+
+}
+const method2=()=>{
+  setAscending(!ascending)
+
+let newData=data.slice(0)
+newData.forEach(d=>{
+  console.log(data)
+d.problems=d.problems.sort((p1,p2)=>{
+
+let p= p1.user_rating!=null?((p1.admin_rating*2+p1.user_rating)*100/30):p1.admin_rating*10;
+
+let q= p2.user_rating!=null?((p2.admin_rating*2+p2.user_rating)*100/30):p2.admin_rating*10;
+if(p<q) return -1
+else return 1
+
+})
+
+})
+
+console.log(data)
+setData(newData)
 }
 const submitHandler=()=>{
 
@@ -666,17 +715,24 @@ data && data.map((d,i)=>(
 
 <h4 >Topic name : {d.topic.name}-<span class="badge badge-secondary">{d.topic.lang=="en"?"English":"Bangla"} </span> </h4>
 <h5>Problems List (can select {d.topic.name=="Logical Reasoning"?LogicalProblem:d.topic.name=="Math"?MathProblem:GeoProblem})</h5> 
+
+ <button onClick={ascending?method2:method} className="btn btn-primary btn -lg mb-2">{ascending?<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sort-up" viewBox="0 0 16 16">
+  <path d="M3.5 12.5a.5.5 0 0 1-1 0V3.707L1.354 4.854a.5.5 0 1 1-.708-.708l2-1.999.007-.007a.498.498 0 0 1 .7.006l2 2a.5.5 0 1 1-.707.708L3.5 3.707V12.5zm3.5-9a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zM7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z"/>
+</svg>:<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sort-down" viewBox="0 0 16 16">
+  <path d="M3.5 2.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 11.293V2.5zm3.5 1a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zM7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z"/>
+</svg>}</button>
+ 
  <ul class="list-group list-group-flush">
      {
         d.problems.map((data,i)=>{
 return (
-<div key={i}>
+<div key={data.problem_id}>
 <li class="list-group-item">
     
-    <div class="custom-control custom-checkbox">
+    <div class="custom-control custom-checkbox" style={{display:"flex"}}>
       <input onChange={(e)=>change(e,data)} type="checkbox" class="custom-control-input" id={'check'+data.problem_id} value={data.problem_id} />
       <label class="custom-control-label" for={'check'+data.problem_id}>{data.title}<span class="badge badge-secondary" style={{marginLeft:"10px"}}> <a target="_blank" href={"http://43.224.110.108/lang/en/level/"+level+"/series/"+data.series_id+"/problem/"+data.serial} style={{color:"white"}}>View</a></span></label>
-   
+     <p style={{marginLeft:"100px"}}>Avg rating {data.user_rating!=null?(data.admin_rating*2+data.user_rating)*100.0/30:data.admin_rating*10} %</p>
   
     </div>
   </li>
