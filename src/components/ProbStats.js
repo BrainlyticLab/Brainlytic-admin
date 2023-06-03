@@ -8,6 +8,8 @@ import { keys } from "../keys"
 const ProbStats=()=>{
 
     const [data,setData]=useState([])
+    const [tests,setTests]=useState([])
+    const [test,setTest]=useState([])
     const [maindata,setMainData]=useState([])
  const click1=()=>{
   let c=0;
@@ -130,6 +132,7 @@ document.getElementById("4").classList.remove("active");
     g['nProblemBN']=c1; 
       b.push(g)
       setData(b)
+      console.log(b)
       document.getElementById("4").classList.add("active");
       document.getElementById("1").classList.remove("active");
   document.getElementById("2").classList.remove("active");
@@ -137,7 +140,72 @@ document.getElementById("4").classList.remove("active");
 
        }  
 
+const click5 =(id)=>{
+
+
+  axios({
+          method: 'get',
+          url: link.url+'api/tests/getTopicsSeries',
+    
+          headers: {
+            'authorization': keys.authorization,
+            
+          }
+        }).then(res => {console.log(res.data);
+        
+          let b=[]
+      
+      
+  let c=0;
+  let c1=0;
+  res.data.data.filter(e=>e.test.test_id==id).forEach(d=>{
+      d.all_topics.forEach(e=>{
+      let sum=0;
+      e.all_series.forEach(k=>{
+       sum+= k.problem_count
+      })
+      e['nProblem']=sum;
+      c+=sum;
+       
+    
+    })
+   d['nProblemEN']=c;
+    })
+   
+      b.push(res.data.data.filter(e=>e.nProblemEN>=0)[0])
+     
+        
+        
+        
+     console.log(b)   
+
+     setData(b)
+        
+        
+        
+        
+        
+        })
+      
+      
+
+
+}
+
     useEffect(()=>{
+
+      axios({
+            method: 'get',
+            url: link.url+'api/tests/getTopicsSeries',
+      
+            headers: {
+              'authorization': keys.authorization,
+              
+            }
+          }).then(res => {setTests(res.data.data)})
+        
+        
+        
 
 
         axios({
@@ -189,6 +257,43 @@ return (
   </li>
   <li class="nav-item">
     <a id="4" class="nav-link"  onClick={click4} >Level-4</a>
+  </li>
+  <li class="nav-item">
+  <div class="d">
+  {/* <label for="exampleInput1">Language (en or bn) </label> */}
+    {/* <input onChange={(e)=>setLang(e.target.value)} style={{width:"50%",margin:"auto"}} type="text" class="form-control" id="exampleInput1" aria-describedby="emailHelp" /> */}
+  <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+  
+  value={test}
+  onChange={(e)=>{setTest(e.target.value);click5(e.target.value)}}
+  >
+    <option >Select Online Test</option>
+
+    {
+    tests && tests.map(test=>{
+
+return (
+
+<>
+
+ <option value={test.test.test_id}>{test.test.name}</option>
+
+</>
+
+)
+
+
+
+
+      })
+    }
+
+  
+
+
+</select>
+  </div>
+  
   </li>
   </ul>
   <br/>

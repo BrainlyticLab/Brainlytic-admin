@@ -31,6 +31,28 @@ axios({
   
   }).catch(e=>console.log(e))
 }
+
+const deleteTest=({name,test_id})=>{
+
+  let isExecuted = window.confirm("Are you sure to delete the test "+ name+" ?");
+  if(isExecuted){
+
+     axios({
+    method: 'delete',
+    url: link.url+'api/tests/'+test_id,
+
+    headers: {
+      'authorization': keys.authorization,
+    }
+  }).then(res => { window.alert('Test successfully deleted') })
+    .catch(e => {  console.log(e) })
+
+  }
+
+  
+ 
+
+}
 const load=()=>{
 
     axios({
@@ -168,10 +190,10 @@ tests && tests.map(test=>(
 )
 }
   <a href={"/editTest/"+test.level_id+"/"+test.test_id+"/"+test.lang} class="btn btn-primary">Edit</a>
- 
+  <button onClick={()=>deleteTest(test)} className="btn btn-danger ml-3 pl-3">Delete</button> 
  {
  test.OnlineTest && (Object.keys(test.OnlineTest).length>0)?
- <a href={"/getResult/"+test.level_id+"/"+test.test_id+"/"+test.lang+"/"+test.name} class="btn btn-primary mx-2">Show Result</a>
+ <a href={"/getResult/"+test.level_id+"/"+test.test_id+"/"+test.lang+"/"+test.name} class="btn btn-primary mx-2 my-3">Show Result</a>
 :null
 }
  

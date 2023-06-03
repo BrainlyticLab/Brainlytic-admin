@@ -36,11 +36,12 @@ UnMappedLoading:0,
     diff:"",
     lastDocument:null,
     start:0,
-    end:20
+    end:20,
+    setter:""
 
   }
   componentDidMount = async () => {
-    console.log(this.state.start,this.state.end)
+  
 
     c = 0;
     let p = [];
@@ -392,7 +393,7 @@ getName= (id) =>{
  return name;
 }
   click = async () => {
-    
+ 
     await this.setState({ allLoading: 1 })
     this.setState({
       f: this.state.structure,
@@ -538,6 +539,7 @@ this.setState({ f: a });
   }
 
   searchText = (text) => {
+    console.log(this.state.f)
     let temp = [];
 
     this.state.mainAra.forEach(e => {
@@ -676,7 +678,39 @@ console.log(temp)
   
 </select>
   </div>
-        {this.state.f.length>0 && this.state.f.slice(this.state.start,this.state.end).filter(e=>e.difficulty.includes(this.state.diff)).map((prob, idx) => {
+
+  <div class="d">
+  <label for="exampleInput2">Authors</label>
+    {/* <label for="exampleInput1">Language (en or bn) </label> */}
+    {/* <input onChange={(e)=>setLang(e.target.value)} style={{width:"50%",margin:"auto"}} type="text" class="form-control" id="exampleInput1" aria-describedby="emailHelp" /> */}
+  <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+  
+  value={this.state.setter}
+  onChange={(e)=> this.setState({ setter: e.target.value,start:0,end:this.state.f.length })}
+  >
+ <option selected value="">All</option>
+{
+  this.state.setters.length>0 && this.state.setters.map(setter=>(
+
+<>
+<option value={setter.id}>{setter.data.name}</option>
+</>
+
+
+  ))
+}
+
+ 
+
+  
+</select>
+  </div>
+        {
+        this.state.f.length>0 && this.state.f.filter(e=>e.difficulty.includes(this.state.diff)).filter(e=>e.author_id.includes(this.state.setter)).slice(this.state.start,this.state.end)
+      .sort(function(x, y){
+          return y.timestp -x.timestp;
+      })
+        .map((prob, idx) => {
      
           return (
             <div key={prob.doc_id} class="card mt-5" style={{ width: '20rem', margin: "auto" }} id={prob.doc_id}>
@@ -786,12 +820,13 @@ console.log(temp)
   <ul class="pagination">{
    
 
-  [...Array(20)].map((_, i) => (
-    <li  style={{margin:"auto",marginTop:"45px",marginBottom:"50px"}}><a class="page-link" style={{color:"black"}} href="#" onClick={()=>{this.setState({start:i*(this.state.f.length/20), end:(this.state.f.length/20)*(i+1)})}}>{i}</a></li>
+   Array.from({ length: this.state.f.length>0 ? this.state.f.filter(e=>e.difficulty.includes(this.state.diff)).filter(e=>e.author_id.includes(this.state.setter)).length/30 +1:0 }, (value, index) => index)  .map((_, i,ara) => (
+   
+    <li  style={{margin:"auto",marginTop:"45px",marginBottom:"50px"}}><a class="page-link" style={{color:"black"}} href="#" onClick={()=>{this.setState({start:i*(this.state.f.filter(e=>e.difficulty.includes(this.state.diff)).filter(e=>e.author_id.includes(this.state.setter)).length/ara.length + 1), end:(this.state.f.filter(e=>e.difficulty.includes(this.state.diff)).filter(e=>e.author_id.includes(this.state.setter)).length/ara.length +1)*(i+1)})}}>{i}</a></li>
     
     ))
   }
- <li  style={{margin:"auto",marginTop:"45px",marginBottom:"50px"}}><a class="page-link" style={{color:"black"}} href="#" onClick={()=>{this.setState({start:0, end:this.state.f.length})}}>All</a></li>
+ <li  style={{margin:"auto",marginTop:"45px",marginBottom:"50px"}}><a class="page-link" style={{color:"black"}} href="#" onClick={()=>{this.setState({start:0, end:this.state.f.filter(e=>e.difficulty.includes(this.state.diff)).filter(e=>e.author_id.includes(this.state.setter)).length})}}>All</a></li>
    
   </ul>
 </nav>
