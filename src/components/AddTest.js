@@ -202,15 +202,7 @@ console.log(probId);
 
 
 console.log(level_id)
-if(level_id==6){
-setM(5);
-}
-else if(level_id==7){
-  setM(8);
-}
-else {
-  setM(10);
-}
+setM(5)
 let d=[]
 probId.forEach(p=>{
 d.push({problem_id:p,marks:marks});
@@ -602,16 +594,65 @@ Submit
     <input value={level} onChange={(e)=>setLevel(e.target.value) } style={{width:"50%",margin:"auto"}}type="text" class="form-control" id="exampleInput2"/>
   </div>
   <div class="form-group">
+   <div>
     <label for="exampleInput3">Language</label>
-    <input value={langu} onChange={(e)=>setLang(e.target.value)}  style={{width:"50%",margin:"auto"}}type="text" class="form-control" id="exampleInput3"/>
+    {/* <input value={langu} onChange={(e)=>setLang(e.target.value)}  style={{width:"50%",margin:"auto"}}type="text" class="form-control" id="exampleInput3"/>
+    <div class="d"> */}
+  
+    {/* <label for="exampleInput1">Language (en or bn) </label> */}
+    {/* <input onChange={(e)=>setLang(e.target.value)} style={{width:"50%",margin:"auto"}} type="text" class="form-control" id="exampleInput1" aria-describedby="emailHelp" /> */}
+  <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+  
+  value={langu}
+  onChange={(e)=>setLang(e.target.value)}
+  >
+  <option selected>Select Language</option>
+  <option value="en">English</option>
+  <option value="bn">Bangla</option>
+
+</select>
+  </div>
+ 
+ 
   </div>
   <div class="form-group">
     <label for="exampleInput4">Status  ( 0-Not live, 1- live, 2-Complete)</label>
-    <input value={status} onChange={(e)=>setStatus(e.target.value)}  style={{width:"50%",margin:"auto"}}type="text" class="form-control" id="exampleInput4"/>
+   <div class="d">
+  
+    {/* <label for="exampleInput1">Language (en or bn) </label> */}
+    {/* <input onChange={(e)=>setLang(e.target.value)} style={{width:"50%",margin:"auto"}} type="text" class="form-control" id="exampleInput1" aria-describedby="emailHelp" /> */}
+  <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+  
+  value={status}
+  onChange={(e)=>setStatus(e.target.value)}
+  >
+  <option selected>Select Status</option>
+  <option value="0">Not Live</option>
+  <option value="1">Live</option>
+  <option value="2">Complete</option>
+</select>
+  </div>
+  
   </div>
   <div class="form-group">
+   <div>
     <label for="exampleInput4">Type(0-online,1-practice)</label>
-    <input value={type} onChange={(e)=>setType(e.target.value)}  style={{width:"50%",margin:"auto"}}type="text" class="form-control" id="exampleInput4"/>
+    {/* <input value={type} onChange={(e)=>setType(e.target.value)}  style={{width:"50%",margin:"auto"}}type="text" class="form-control" id="exampleInput4"/> */}
+
+
+    {/* <label for="exampleInput1">Language (en or bn) </label> */}
+    {/* <input onChange={(e)=>setLang(e.target.value)} style={{width:"50%",margin:"auto"}} type="text" class="form-control" id="exampleInput1" aria-describedby="emailHelp" /> */}
+  <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+  
+  value={type}
+  onChange={(e)=>setType(e.target.value)}
+  >
+  <option selected>Select Type</option>
+  <option value={false}>Online</option>
+  <option value={true}>Practice</option>
+
+</select>
+  </div>
   </div>
 
 </form>
