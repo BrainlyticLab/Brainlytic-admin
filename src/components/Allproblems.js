@@ -66,7 +66,7 @@ var cc=0;
       
      
       docs.forEach(doc => {
-console.log(doc)
+
 
 
         this.setState({lastDocument:doc})
@@ -194,8 +194,10 @@ console.log(doc)
         }
         else if (temp.type === "dragAndDrop-2") {
           let ques=""
+         
+    
           if(doc?.data()?.questionnaire)
-           ques = doc?.data()?.questionnaire
+           ques = JSON.parse(doc?.data()?.questionnaire)
           if (dataTemp.type == "mcq") {
             mainData["options"] = doc.data().options;
             mainData["answer"] = doc.data().options[doc.data().answer - 1];
@@ -371,7 +373,7 @@ console.log(doc)
 
       })
     })
-console.log(p)
+
 
     await this.setState({
       structure: p,
@@ -397,7 +399,7 @@ getName= (id) =>{
  return name;
 }
   click = async () => {
-    console.log(k)
+    
  
     await this.setState({ allLoading: 1 })
     this.setState({
@@ -419,7 +421,7 @@ getName= (id) =>{
    let level=prob.level_id-5;
 
 let link=`http://43.224.110.108/lang/en/level/${level}/series/${prob.series_id}/problem/${prob.serial}`
-console.log(link);
+
 const dom=document.getElementById("prob_link");;
 dom.href=link;
 dom.click();
@@ -457,8 +459,7 @@ axios({
 
   bnclick = async () => {
     await this.setState({ bnLoading: 1 })
-    console.log(this.state.f)
-   
+ 
 
     axios({
       method: 'get',
@@ -487,7 +488,7 @@ axios({
         'authorization': keys.authorization,
         
       }
-    }).then(res => { console.log(res.data); this.setState({ UnMappedLoading: 0 } ); 
+    }).then(res => { this.setState({ UnMappedLoading: 0 } ); 
 
 var a=res.data.filter(function(item)
  {
@@ -544,7 +545,7 @@ this.setState({ f: a });
   }
 
   searchText = (text) => {
-    console.log(this.state.f)
+    
     let temp = [];
 
     this.state.mainAra.forEach(e => {
@@ -602,7 +603,7 @@ this.setState({ f: a });
     prob["series_id"] = this.state.series_id;
     prob["islive"] = true;
     temp["problem"] = prob;
-console.log(temp)
+
     axios({
       method: 'post',
       url: link.url+'admin/addProblem',
