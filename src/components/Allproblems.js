@@ -11,7 +11,7 @@ import Navbar from "./Navbar"
 import {link} from "../base_url"
 import { Link } from "react-router-dom"
 var c = 0;
-
+var k=0;
 class Allproblems extends Component {
   state = {
 
@@ -60,12 +60,13 @@ UnMappedLoading:0,
       
     })
 var cc=0;
+
     firebase.firestore().collection('problem').where("draft","==",false).get().then(docs => {
       
       
      
       docs.forEach(doc => {
-
+console.log(doc)
 
 
         this.setState({lastDocument:doc})
@@ -192,7 +193,9 @@ var cc=0;
 
         }
         else if (temp.type === "dragAndDrop-2") {
-          let ques = JSON.parse(doc.data().questionnaire);
+          let ques=""
+          if(doc?.data()?.questionnaire)
+           ques = doc?.data()?.questionnaire
           if (dataTemp.type == "mcq") {
             mainData["options"] = doc.data().options;
             mainData["answer"] = doc.data().options[doc.data().answer - 1];
@@ -368,12 +371,13 @@ var cc=0;
 
       })
     })
-
+console.log(p)
 
     await this.setState({
       structure: p,
       count: c,
-      end:p.length==0?20:p.length
+    //  end:1000
+     end:p.length==0?20:p.length
       
     })
   
@@ -393,6 +397,7 @@ getName= (id) =>{
  return name;
 }
   click = async () => {
+    console.log(k)
  
     await this.setState({ allLoading: 1 })
     this.setState({
