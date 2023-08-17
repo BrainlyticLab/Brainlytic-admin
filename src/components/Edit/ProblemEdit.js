@@ -175,6 +175,7 @@ await this.setState({loading:1})
     }).then(res => {
 
       alert("Problem successfully edited");
+      console.log(res)
 
       this.setState({loading:0})
 
@@ -254,7 +255,7 @@ await this.setState({loading:1})
             (
               <div class="form-check">
                 <input onClick={(e) => this.setState({ ispremium: !this.state.ispremium })} class="form-check-input" style={{marginLeft:"-4.25rem"}} type="checkbox" value={this.state.ispremium} id="flexCheckDefault" checked />
-                <label class="form-check-label" for="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault" >
                   Premium
                 </label>
               </div>
@@ -262,7 +263,7 @@ await this.setState({loading:1})
             (
               <div class="form-check">
                 <input onClick={(e) => this.setState({ ispremium: !this.state.ispremium })} class="form-check-input"  style={{marginLeft:"-4.25rem"}} type="checkbox" value={this.state.ispremium} id="flexCheckDefault" />
-                <label class="form-check-label" for="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault" >
                   Premium
                 </label>
               </div>
@@ -280,7 +281,7 @@ await this.setState({loading:1})
             (
               <div class="form-check">
                 <input onClick={(e) => this.setState({ isLive: !this.state.isLive })} class="form-check-input"  style={{marginLeft:"-4.25rem"}} type="checkbox" value={this.state.isLive} id="flexCheckDefault2" />
-                <label class="form-check-label" for="flexCheckDefault2">
+                <label class="form-check-label" for="flexCheckDefault2" >
                   IsLive
                 </label>
               </div>

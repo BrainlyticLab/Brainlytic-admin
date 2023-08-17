@@ -64,7 +64,7 @@ const click=()=>{
 
     axios({
         method: 'get',
-        url: link.url+'admin/getTopicsAndProblems?level_id='+level,
+        url: link.url+'admin/getTopicsAndProblems',
     
         headers: {
           'authorization': keys.authorization,

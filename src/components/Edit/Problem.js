@@ -129,7 +129,7 @@ is_for_test:this.props.problem.is_for_test!=null?this.props.problem.is_for_test:
 (
 <div class="form-check">
   <input onClick={(e)=>this.setState({isPremium:!this.state.isPremium})} class="form-check-input" type="checkbox" value={this.state.isPremium} id="flexCheckDefault" checked />
-  <label class="form-check-label" for="flexCheckDefault">
+  <label class="form-check-label" for="flexCheckDefault" style={{marginLeft:"70px"}}>
     Premium
   </label>
 </div>  
@@ -137,7 +137,7 @@ is_for_test:this.props.problem.is_for_test!=null?this.props.problem.is_for_test:
 (
 <div class="form-check">
   <input onClick={(e)=>this.setState({isPremium:!this.state.isPremium})} class="form-check-input" type="checkbox" value={this.state.isPremium} id="flexCheckDefault" />
-  <label class="form-check-label" for="flexCheckDefault">
+  <label class="form-check-label" for="flexCheckDefault" style={{marginLeft:"70px"}}>
     Premium
   </label>
 </div>  
@@ -148,7 +148,7 @@ is_for_test:this.props.problem.is_for_test!=null?this.props.problem.is_for_test:
 (
 <div class="form-check">
   <input onClick={(e)=>this.setState({isLive:!this.state.isLive})} class="form-check-input" type="checkbox" value={this.state.isLive} id="flexCheckDefault2" checked />
-  <label class="form-check-label" for="flexCheckDefault2">
+  <label class="form-check-label" for="flexCheckDefault2" style={{marginLeft:"70px"}}>
     IsLive
   </label>
 </div>  
@@ -156,7 +156,7 @@ is_for_test:this.props.problem.is_for_test!=null?this.props.problem.is_for_test:
 (
 <div class="form-check">
   <input onClick={(e)=>this.setState({isLive:!this.state.isLive})} class="form-check-input" type="checkbox" value={this.state.isLive} id="flexCheckDefault2" />
-  <label class="form-check-label" for="flexCheckDefault2">
+  <label class="form-check-label" for="flexCheckDefault2" style={{marginLeft:"70px"}}>
     IsLive
   </label>
 </div>  
@@ -168,7 +168,7 @@ is_for_test:this.props.problem.is_for_test!=null?this.props.problem.is_for_test:
 (
 <div class="form-check">
   <input onClick={(e)=>this.setState({is_for_test:!this.state.is_for_test})} class="form-check-input" type="checkbox" value={this.state.is_for_test} id="flexCheckDefault3" checked />
-  <label class="form-check-label" for="flexCheckDefault3">
+  <label class="form-check-label" for="flexCheckDefault3" style={{marginLeft:"70px"}}>
   IsForTest
   </label>
 </div>  
@@ -176,7 +176,7 @@ is_for_test:this.props.problem.is_for_test!=null?this.props.problem.is_for_test:
 (
 <div class="form-check">
   <input onClick={(e)=>this.setState({is_for_test:!this.state.is_for_test})} class="form-check-input" type="checkbox" value={this.state.is_for_test} id="flexCheckDefault3" />
-  <label class="form-check-label" for="flexCheckDefault3">
+  <label class="form-check-label" for="flexCheckDefault3" style={{marginLeft:"70px"}}>
   IsForTest
   </label>
 </div>  

@@ -419,8 +419,9 @@ getName= (id) =>{
   go=(prob)=>{
 
    let level=prob.level_id-5;
+   console.log(prob)
 
-let link=`http://43.224.110.108/lang/en/level/${level}/series/${prob.series_id}/problem/${prob.serial}`
+let link=`https://brainlytic.org/lang/en/level/${level}/series/${prob.series_id}/problem/${prob.serial}`
 
 const dom=document.getElementById("prob_link");;
 dom.href=link;
@@ -489,9 +490,11 @@ axios({
         
       }
     }).then(res => { this.setState({ UnMappedLoading: 0 } ); 
-
+console.log(res.data.length)
 var a=res.data.filter(function(item)
  {
+
+
   return item.associated_problem_id==null;
  });
 
@@ -696,7 +699,19 @@ this.setState({ f: a });
   >
  <option selected value="">All</option>
 {
-  this.state.setters.length>0 && this.state.setters.map(setter=>(
+  this.state.setters.length>0 && this.state.setters.sort(function(x, y){
+    const titleA = x.data.name.toUpperCase();
+    const titleB = y.data.name.toUpperCase();
+    
+  if (titleA < titleB) {
+    return -1;
+  }
+  if (titleA > titleB) {
+    return 1;
+  }
+  return 0;
+
+  }).map(setter=>(
 
 <>
 <option value={setter.id}>{setter.data.name}</option>
