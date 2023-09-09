@@ -1,5 +1,5 @@
 export const link={
 
-    url:'http://43.224.110.202/',
+    url:'https://api.brainlytic.org/',
     
 }  

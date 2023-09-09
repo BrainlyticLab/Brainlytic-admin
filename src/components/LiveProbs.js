@@ -67,7 +67,7 @@ const click=()=>{
         url: link.url+'admin/getTopicsAndProblems',
     
         headers: {
-          'authorization': keys.authorization,
+          'authorization': keys.authorization, 
         }
       }).then(res =>{ setData(res.data);console.log(res.data)})
         .catch(e => {  console.log(e)})
