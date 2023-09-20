@@ -1,7 +1,7 @@
 import axios from 'axios'
 import {keys} from "../keys"
 export const fetchSerieses=(dispatcher)=>{
-axios.get(`http://43.224.110.202/admin/getAllSeries`,{
+axios.get(`https://api.brainlytic.org/admin/getAllSeries`,{
 
 headers:{
 	'authorization':keys.authorization,

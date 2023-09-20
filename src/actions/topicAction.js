@@ -3,7 +3,7 @@ import {keys} from "../keys"
 import {link} from "../base_url"
 export const fetchTopics=(dispatcher,slug)=>{
 	console.log("link"+link.url)
-axios.get('https://zo3aw6p85g.execute-api.us-east-2.amazonaws.com/production/topics/'+slug,{
+axios.get('https://api.brainlytic.org/topics/'+slug,{
 
 headers:{
 	'authorization':keys.authorization,
