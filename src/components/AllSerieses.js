@@ -192,7 +192,7 @@ return (
   <button onClick={async()=>{await this.setState({currentSeries:series})}} type="button" className="btn btn-info ml-3 mx-2" data-toggle="modal" data-target="#editSeries">
  Edit
 </button> 
-<button type="button" className="btn btn-primary ml-3 mx-2" data-toggle="collapse" data-target={'#collapse2'+series.series_id}>
+<button type="button" className="btn btn-primary ml-3 mx-2 mt-4" data-toggle="collapse" data-target={'#collapse2'+series.series_id}>
  nProblems
 </button> 
 <Link to={{
