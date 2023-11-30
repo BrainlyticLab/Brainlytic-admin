@@ -170,6 +170,7 @@ var cc=0;
           mainData["answer"] = doc.data().answer;
         }
         else if (temp.type == "exclusion_grid") {
+try{
 
           let ques = JSON.parse(doc.data().questionnaire);
 
@@ -191,6 +192,10 @@ var cc=0;
             mainData["answer"] = doc.data().answer;
           }
 
+          }
+catch(e){
+
+}
         }
         else if (temp.type === "dragAndDrop-2") {
           let ques=""
